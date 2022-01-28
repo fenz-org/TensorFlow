@@ -136,7 +136,7 @@ RUN mkdir -p /deps-installation/tf-cc/lib && \
     cp -r ${TF_INSTALL_PATH}/tensorflow/include ./ && \
     cp /tmp/tensorflow-${TF_VER}/bazel-bin/tensorflow/libtensorflow_cc.so.2.*.0 ./lib/ && \
     cd lib && \
-    ln -s libtensorflow_cc.so.${TF_VER} libtensorflow_cc.so.2
+    ln -s libtensorflow_cc.so.${TF_VER} libtensorflow_cc.so.2 && \
     ln -s libtensorflow_cc.so.2 libtensorflow_cc.so
 
 ADD https://github.com/intel/mkl-dnn/releases/download/v0.21/mklml_lnx_2019.0.5.20190502.tgz /tmp
