@@ -21,6 +21,7 @@ RUN apt-get update && \
         git \
         gpg-agent \
         build-essential \
+        cmake \
         curl \
         wget \
         unzip \
