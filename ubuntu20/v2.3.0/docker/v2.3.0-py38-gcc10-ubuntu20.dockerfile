@@ -80,7 +80,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \        
         libicu-dev \
         libbz2-dev \        
-        liblzma-dev
+        liblzma-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
