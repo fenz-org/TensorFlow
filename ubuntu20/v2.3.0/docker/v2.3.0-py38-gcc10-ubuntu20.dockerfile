@@ -58,12 +58,12 @@ RUN update-alternatives \
 RUN curl https://bootstrap.pypa.io/get-pip.py -o /get-pip.py && \
     python${PYTHON_VERSION} /get-pip.py && \
     python${PYTHON_VERSION} -m pip install --no-cache-dir \
-        numpy \
+        numpy==1.18.5 \
         cython && \
     curl -LO https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip && \
     unzip -q ${OPENCV_VERSION}.zip && \
     rm ${OPENCV_VERSION}.zip && \
-    cd /opencv-${OPENCV_VERSION} && \
+    cd /tmp/opencv-${OPENCV_VERSION} && \
     mkdir build && cd build && \
     cmake \
         -DPYTHON_EXECUTABLE=/usr/bin/python${PYTHON_VERSION} \
@@ -112,8 +112,7 @@ RUN BAZEL_VER=`cat tensorflow-${TF_VER}/.bazelversion` && \
 
 # Build and install TF Python
 RUN python${PYTHON_VERSION} -m pip install --no-cache-dir \
-        keras_preprocessing \
-        numpy==1.18.5 && \
+        keras_preprocessing && \
     cd tensorflow-${TF_VER} && \
     yes "" | python${PYTHON_VERSION} ./configure.py && \
     export BAZEL_ARGS="--config=mkl --config=opt -c opt \
