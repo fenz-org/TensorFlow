@@ -100,7 +100,7 @@ ENV TF_VER="2.3.0"
 
 # Install Bazel
 RUN wget https://github.com/tensorflow/tensorflow/archive/refs/tags/v${TF_VER}.tar.gz && \
-    tar xf https://github.com/tensorflow/tensorflow/archive/refs/tags/v${TF_VER}.tar.gz && \
+    tar xf v${TF_VER}.tar.gz && \
     BAZEL_VER=`cat tensorflow-${TF_VER}/.bazelversion` && \
     curl https://bazel.build/bazel-release.pub.gpg | apt-key add - && \
     echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list && \
