@@ -11,7 +11,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LANG=C.UTF-8 \
     LANGUAGE=C.UTF-8 \
     OPENCV_VERSION="4.4.0" \
-    PYTHON_VERSION="3.8"
+    PYTHON_VERSION="3.8" \
+    PYVER = "38"
 
 WORKDIR /tmp
 
@@ -88,7 +89,8 @@ RUN apt-get update && \
 ENV BOOST_VERSION="1.74.0" \
     _BOOST_VERSION="1_74_0"
 
-RUN wget -q https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${_BOOST_VERSION}.tar.gz && \
+RUN gcc --version && \
+    wget -q https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${_BOOST_VERSION}.tar.gz && \
     tar xf boost_${_BOOST_VERSION}.tar.gz && \
     cd boost_${_BOOST_VERSION} && \
     ./bootstrap.sh --prefix=/opt/boost/${_BOOST_VERSION} && \
@@ -125,7 +127,7 @@ RUN python${PYTHON_VERSION} -m pip install --no-cache-dir \
     bazel build -j 2 ${BAZEL_ARGS[@]} //tensorflow/tools/pip_package:build_pip_package && \
     bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp && \
     python${PYTHON_VERSION} -m pip install --ignore-installed --no-cache-dir \
-        /tmp/tensorflow-${TF_VER}-cp38-cp38-linux_x86_64.whl
+        /tmp/tensorflow-${TF_VER}-cp${PYVER}-cp${PYVER}-linux_x86_64.whl
 
 # Build and install TF C++
 RUN cd tensorflow-${TF_VER} && \
