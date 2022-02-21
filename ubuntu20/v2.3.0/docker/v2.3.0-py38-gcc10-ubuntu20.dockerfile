@@ -118,7 +118,11 @@ RUN wget https://github.com/tensorflow/tensorflow/archive/refs/tags/v${TF_VER}.t
 RUN python${PYTHON_VERSION} -m pip install --no-cache-dir \
         keras_preprocessing && \
     cd tensorflow-${TF_VER} && \
-    yes "" | python${PYTHON_VERSION} ./configure.py && \
+    python${PYTHON_VERSION} ./configure.py
+
+#    yes "" | ./configure
+
+RUN cd tensorflow-${TF_VER} && \
     export BAZEL_ARGS="--config=mkl --config=opt -c opt \
                        --copt=-I/usr/include/openssl --host_copt=-I/usr/include/openssl \
                        --linkopt=-l:libssl.so.1.1 --linkopt=-l:libcrypto.so.1.1 \
@@ -145,4 +149,3 @@ RUN mkdir -p /deps-installation/tf-cc/lib && \
 ADD https://github.com/intel/mkl-dnn/releases/download/v0.21/mklml_lnx_2019.0.5.20190502.tgz /tmp
 
 RUN cp /tmp/mklml_lnx_2019.0.5.20190502/lib* /deps-installation/tf-cc/lib/.
-
