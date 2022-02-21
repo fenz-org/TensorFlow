@@ -12,7 +12,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LANGUAGE=C.UTF-8 \
     OPENCV_VERSION="4.4.0" \
     PYTHON_VERSION="3.8" \
-    PYVER= "38"
+    PYVER="38"
 
 WORKDIR /tmp
 
