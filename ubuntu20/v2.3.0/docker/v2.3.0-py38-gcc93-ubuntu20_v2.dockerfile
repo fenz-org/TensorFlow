@@ -37,7 +37,8 @@ RUN mkdir -p /deps-installation/tf-cc/lib && \
 ADD https://github.com/intel/mkl-dnn/releases/download/v0.21/mklml_lnx_2019.0.5.20190502.tgz /tmp
 
 RUN tar xf /tmp/mklml_lnx_2019.0.5.20190502.tgz && \
-    cp /tmp/mklml_lnx_2019.0.5.20190502/lib/* /deps-installation/tf-cc/lib/. && \
+    cp /tmp/mklml_lnx_2019.0.5.20190502/lib/libmklml_intel.so /deps-installation/tf-cc/lib/. && \
+    cp /tmp/mklml_lnx_2019.0.5.20190502/lib/libiomp5.so /deps-installation/tf-cc/lib/. && \
     rm -rf /tmp/*
 
 WORKDIR /
