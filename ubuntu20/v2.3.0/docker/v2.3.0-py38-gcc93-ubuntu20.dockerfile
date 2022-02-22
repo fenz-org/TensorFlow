@@ -64,7 +64,8 @@ ENV TF_VER="2.3.0"
 
 ADD py38-gcc93-ubuntu20.tar.gz /tmp/.
 
-RUN ls -la /tmp && \
+RUN cd /tmp && \
+    tar xf py38-gcc93-ubuntu20.tar.gz && \
     mv /tmp/py38-gcc93-ubuntu20 /tmp/tf_files && \
     python${PYTHON_VERSION} -m pip install --ignore-installed --no-cache-dir \
         /tmp/tf_files/tensorflow-${TF_VER}-cp${PYVER}-cp${PYVER}-linux_x86_64.whl
