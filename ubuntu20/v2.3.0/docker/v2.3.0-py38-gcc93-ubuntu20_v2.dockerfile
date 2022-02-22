@@ -69,7 +69,10 @@ RUN apt-get update && \
         sudo \
         software-properties-common \
         python${PYTHON_VERSION}-dev \
-        python${PYTHON_VERSION}-distutils && \
+        python${PYTHON_VERSION}-distutils \
+        libicu-dev \
+        libbz2-dev \        
+        liblzma-dev && \
     cd /usr/bin && \
     ln -s python${PYTHON_VERSION} python && \
     apt-get clean && \
