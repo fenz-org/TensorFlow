@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=ubuntu:20.04
+ARG BASE_IMAGE=provarepro/tensorflow:deps-py38-gcc10-ubuntu20
 
 FROM ${BASE_IMAGE}
 
